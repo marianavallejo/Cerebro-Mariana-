@@ -1,0 +1,104 @@
+:root{
+  --bg:#0f1020; --panel:#17182e; --ink:#e7e8ff; --muted:#a4a7ff; --accent:#8ef9f3;
+  --pink:#ff7ac6; --lime:#c0ff6a; --amber:#ffd166; --blue:#6ab0ff; --red:#ff5d73; --green:#7fffb3;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;background:radial-gradient(1200px 700px at 70% -10%,#1a1b3a,transparent),var(--bg);color:var(--ink);}
+header{padding:16px 20px;display:flex;gap:16px;align-items:center;border-bottom:1px solid #25274b;backdrop-filter:saturate(140%) blur(2px);position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(15,16,32,.85),rgba(15,16,32,.55));}
+header h1{font-size:20px;margin:0;font-weight:700;letter-spacing:.4px}
+.app{display:grid;grid-template-columns:420px 1fr;min-height:calc(100dvh - 64px)}
+.left{border-right:1px solid #25274b;padding:16px;overflow:auto}
+.right{padding:16px;position:relative;overflow:hidden}
+
+/* Brain card */
+.card{background:linear-gradient(180deg,#1b1c3b,#141534);border:1px solid #2a2d61;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);}
+.card h2{font-size:16px;margin:0 0 8px 0;color:var(--muted);letter-spacing:.6px;font-weight:600}
+.pad{padding:16px}
+
+/* SVG brain */
+.brainwrap{display:grid;place-items:center;padding:18px}
+svg{max-width:100%;height:auto}
+.part{cursor:pointer;transition:transform .15s ease, filter .2s ease}
+.part:focus{outline:2px dashed var(--accent);outline-offset:4px}
+.part:hover{transform:translateY(-2px);filter:drop-shadow(0 0 12px rgba(142,249,243,.5))}
+
+/* Legend */
+.legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px}
+.pill{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;background:#131433;border:1px solid #2a2d61;font-size:13px}
+.dot{width:12px;height:12px;border-radius:999px}
+
+/* Scene Panel */
+.scene{position:absolute;inset:0;padding:16px;display:grid;grid-template-rows:auto 1fr;gap:12px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px}
+.btn{background:#181a3a;border:1px solid #2a2d61;color:var(--ink);padding:10px 14px;border-radius:12px;font-weight:600;letter-spacing:.3px;cursor:pointer;transition:transform .1s ease, background .2s ease}
+.btn:hover{transform:translateY(-1px);background:#20235a}
+.btn.alt{background:#102a38;border-color:#214b57}
+.btn.warn{background:#3a1420;border-color:#612a3a}
+.panel{background:linear-gradient(180deg,#15163a,#121233);border:1px solid #2a2d61;border-radius:16px;padding:16px;position:relative;overflow:hidden}
+
+.title{font-size:18px;font-weight:800;letter-spacing:.3px;margin:0 0 4px}
+.desc{margin:0 0 12px;color:#c7c9ff;opacity:.9}
+
+/* Canvas zones */
+#playground{position:relative;border-radius:16px;overflow:hidden;min-height:540px;background:radial-gradient(1000px 500px at 80% -10%,rgba(142,249,243,.1),transparent),linear-gradient(180deg,#0e1027,#0b0c22)}
+.overlay{position:absolute;inset:0;pointer-events:none}
+
+/* Scene specifics */
+/* 1. Cereal + Música */
+.bowl{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);width:280px;height:120px;border-radius:60px/30px;background:#1a1c42;border:2px solid #3a3eb0;box-shadow:inset 0 20px 40px rgba(255,255,255,.06)}
+.milk{position:absolute;left:50%;bottom:100px;transform:translateX(-50%);width:260px;height:80px;border-radius:50%;background:radial-gradient(circle at 50% 40%, #f7fbff, #dfe7ff 60%, #a6b1ff 100%);filter:blur(0.2px);opacity:.9}
+.cereal{position:absolute;top:0;left:0;width:100%;height:80%;}
+.flake{position:absolute;font-size:22px;animation:float 12s linear infinite}
+@keyframes float{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(-220px) rotate(360deg)}}
+.vibe{animation: vibe .35s ease-in-out infinite}
+@keyframes vibe{0%{transform:translateX(-50%) scale(1)}50%{transform:translateX(calc(-50% + 3px)) scale(1.01)}100%{transform:translateX(-50%) scale(1)}}
+
+/* 2. Proyector + Doodles */
+.projector{position:absolute;left:30px;bottom:30px;width:120px;height:70px;background:#151638;border-radius:12px;border:1px solid #2a2d61;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.beam{position:absolute;left:150px;bottom:50px;width:0;height:0;border-top:160px solid transparent;border-bottom:160px solid transparent;border-left:420px solid rgba(142,249,243,.08);filter:drop-shadow(0 0 12px rgba(142,249,243,.2))}
+.doodle{position:absolute;font-size:28px;animation: drift 14s linear infinite}
+@keyframes drift{0%{transform:translateX(0) translateY(0) rotate(0)}100%{transform:translateX(420px) translateY(-120px) rotate(360deg)}}
+
+/* 3. Detalles insignificantes */
+.street{position:absolute;inset:0;display:grid;place-items:center}
+.scene3{display:flex;gap:16px}
+.card3{width:160px;height:160px;border-radius:16px;border:1px solid #2a2d61;background:#14163c;display:grid;place-items:center;cursor:pointer;transition:transform .12s}
+.card3:hover{transform:translateY(-3px)}
+.story{position:absolute;bottom:16px;left:16px;right:16px;background:rgba(10,11,30,.85);border:1px solid #2a2d61;border-radius:12px;padding:10px;font-size:14px}
+
+/* 4. Filtros de color */
+.tint{position:absolute;inset:0;background:transparent;mix-blend-mode:screen;pointer-events:none;transition:background .3s ease}
+input[type="range"]{width:180px}
+
+/* 5. Encuentros sociales */
+.emoji-splash{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.splash-item{position:absolute;font-size:26px;animation: pop 800ms ease forwards}
+@keyframes pop{0%{transform:translateY(10px) scale(.6);opacity:0}60%{transform:translateY(-10px) scale(1.2);opacity:1}100%{transform:translateY(0) scale(1);opacity:.2}}
+
+/* 6. Nervios (apagón) */
+.blackout{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;transition:opacity .5s}
+.blackout.show{opacity:.95;pointer-events:auto}
+.pinkify{position:absolute;inset:20% 10%;border-radius:20px;border:2px dashed #ff9fd9;color:#ffdff2;background:rgba(255,192,224,.06);display:none;place-items:center;font-size:22px;font-weight:800}
+.pinkify.show{display:grid}
+
+/* 7. Odio -> comida disco */
+.gray{position:absolute;inset:0;background:linear-gradient(180deg,#171717,#0f0f0f);opacity:.8;mix-blend-mode:multiply;pointer-events:none}
+.disco{position:absolute;top:30px;right:30px;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle at 40% 40%, #fff, #d0d0d0 30%, #888 70%, #666 100%);box-shadow:0 0 18px rgba(255,255,255,.5);animation: spin 2s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.beamline{position:absolute;top:0;bottom:0;width:3px;background:linear-gradient(#fff,transparent);opacity:.4;animation: sweep 1.5s linear infinite}
+@keyframes sweep{0%{left:0}100%{left:100%}}
+.confetti{position:absolute;font-size:18px;animation: fall 2.2s ease-in forwards}
+@keyframes fall{0%{transform:translateY(-40px) rotate(0)}100%{transform:translateY(520px) rotate(260deg);opacity:.3}}
+
+/* 8. Refugio (cascada) */
+.water{position:absolute;inset:0;background:linear-gradient(180deg,rgba(60,160,255,.12),rgba(20,80,200,.08)), repeating-linear-gradient(180deg, rgba(110,180,255,.22), rgba(110,180,255,.22) 2px, transparent 2px, transparent 6px);mask:linear-gradient(180deg,transparent 0%, #000 10%, #000 90%, transparent 100%);animation: flow 3.2s linear infinite}
+@keyframes flow{0%{background-position:0 0, 0 0}100%{background-position:0 100%, 0 240px}}
+.fish{position:absolute;font-size:26px;animation: swim 9s linear infinite}
+@keyframes swim{0%{transform:translateX(-10%) translateY(0)}50%{transform:translateX(60vw) translateY(-20px)}100%{transform:translateX(120vw) translateY(0)}}
+
+/* Utility */
+.hide{display:none}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.spacer{flex:1}
+.muted{opacity:.85;color:#cfd1ff}
+.small{font-size:12px}

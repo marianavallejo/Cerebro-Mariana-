@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>entrega final </title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulador Interactivo del Cerebro</title>
+</head>
+<body>
+  <header>
+    <h1>🧠 Simulador Interactivo del Cerebro — CodePen Ready</h1>
+    <div class="spacer"></div>
+    <button id="resetAll" class="btn">Reiniciar</button>
+  </header>
+
+  <div class="app">
+    <!-- LEFT: Brain + Legend -->
+    <aside class="left">
+      <div class="card pad">
+        <h2>Mapa del cerebro (toca una zona)</h2>
+        <div class="brainwrap">
+          <!-- Simple stylized brain as SVG with clickable parts -->
+          <svg viewBox="0 0 800 500" aria-label="Mapa interactivo del cerebro" role="img">
+            <!-- Hemispheres base -->
+            <ellipse cx="300" cy="240" rx="210" ry="180" fill="#1e2050" stroke="#2a2d61" stroke-width="2" />
+            <ellipse cx="520" cy="240" rx="210" ry="180" fill="#1e2050" stroke="#2a2d61" stroke-width="2" />
+            <!-- Brainstem -->
+            <rect x="465" y="360" width="40" height="90" rx="20" fill="#24265d" stroke="#2a2d61" />
+            
+            <!-- Regions -->
+            <g tabindex="0" class="part" data-scene="1" aria-label="Lóbulo frontal">
+              <path d="M140,230 C140,120 220,70 300,70 C350,70 420,95 450,140 C470,170 470,210 420,240 C360,275 250,250 200,260 C170,265 140,260 140,230 Z" fill="#28307d" stroke="#3a41a0" />
+            </g>
+            <g tabindex="0" class="part" data-scene="2" aria-label="Lóbulo temporal">
+              <path d="M250,330 C210,330 170,320 150,300 C120,270 120,230 140,210 C170,180 230,190 260,210 C280,225 300,250 310,280 C320,310 300,330 250,330 Z" fill="#2b2f87" stroke="#3a41a0" />
+            </g>
+            <g tabindex="0" class="part" data-scene="3" aria-label="Lóbulo parietal">
+              <path d="M300,80 C380,80 460,130 470,180 C480,230 390,260 330,260 C270,260 220,230 210,210 C200,190 250,80 300,80 Z" fill="#2a338e" stroke="#3a41a0" />
+            </g>
+            <g tabindex="0" class="part" data-scene="4" aria-label="Lóbulo occipital">
+              <path d="M520,90 C600,90 680,140 690,180 C700,220 650,260 580,260 C510,260 470,230 470,195 C470,150 470,90 520,90 Z" fill="#2a3499" stroke="#3a41a0" />
+            </g>
+            <g tabindex="0" class="part" data-scene="5" aria-label="Sistema límbico / social">
+              <path d="M480,250 C520,250 570,280 590,310 C610,340 600,370 560,380 C520,390 470,370 450,340 C430,310 440,250 480,250 Z" fill="#2d38a8" stroke="#3a41a0" />
+            </g>
+            <g tabindex="0" class="part" data-scene="6" aria-label="Tronco encefálico (nervios)">
+              <rect x="468" y="360" width="34" height="86" rx="16" fill="#27307a" stroke="#3a41a0" />
+            </g>
+            <g tabindex="0" class="part" data-scene="7" aria-label="Cerebelo (comer y bailar)">
+              <path d="M600,340 C650,330 700,330 730,350 C760,370 740,390 700,400 C660,410 600,400 580,380 C560,360 570,345 600,340 Z" fill="#2a2f87" stroke="#3a41a0" />
+            </g>
+            <g tabindex="0" class="part" data-scene="8" aria-label="Refugio">
+              <path d="M390,280 C430,270 470,270 500,290 C530,310 530,340 500,350 C470,360 420,350 400,330 C380,310 370,290 390,280 Z" fill="#28307d" stroke="#3a41a0" />
+            </g>
+          </svg>
+        </div>
+        <div class="legend">
+          <div class="pill"><span class="dot" style="background:#28307d"></span>Frontal — Cereal & Música</div>
+          <div class="pill"><span class="dot" style="background:#2b2f87"></span>Temporal — Proyector & Doodles</div>
+          <div class="pill"><span class="dot" style="background:#2a338e"></span>Parietal — Detalles mínimos</div>
+          <div class="pill"><span class="dot" style="background:#2a3499"></span>Occipital — Filtros de color</div>
+          <div class="pill"><span class="dot" style="background:#2d38a8"></span>Social — Encuentros</div>
+          <div class="pill"><span class="dot" style="background:#27307a"></span>Nervios — Apagón rosa</div>
+          <div class="pill"><span class="dot" style="background:#2a2f87"></span>Cerebelo — Comida disco</div>
+          <div class="pill"><span class="dot" style="background:#28307d"></span>Refugio — Cascada</div>
+        </div>
+      </div>
+      <div class="card pad" style="margin-top:12px">
+        <h2>Cómo usar</h2>
+        <p class="small muted">Haz clic o usa Tab ↹ + Enter sobre una zona del cerebro. A la derecha verás una escena interactiva inspirada en tu texto.
+        Funciona en CodePen pegando este archivo en el panel HTML (se autoincluyen estilos y scripts). </p>
+      </div>
+    </aside>
+
+    <!-- RIGHT: Scene workspace -->
+    <main class="right">
+      <section id="scene" class="scene">
+        <div>
+          <div class="row">
+            <h3 class="title">Elige una zona del cerebro</h3>
+            <div class="spacer"></div>
+            <button class="btn" id="randomScene">Aleatorio 🎲</button>
+          </div>
+          <p class="desc">Este simulador traduce tu narrativa en micro-experimentos sensoriales: colores, vibraciones, recuerdos, encuentro con personas, comida-escenario, apagón nervioso y refugio acuático.</p>
+          <div class="toolbar"></div>
+        </div>
+        <div id="playground" class="panel">
+          <!-- dynamic content injected here -->
+          <div class="overlay" id="overlay"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
